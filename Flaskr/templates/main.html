@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <title>.</title>
+  </head>
+  <body>
+    <div class="header" id="wel">
+      <h1>Find Your</h1>
+      <h1 class="type" id="type"></h1>
+    </div>
+    <form method="post" action="" class="quest" id="quest">
+      <div class="label-cont">
+        <label for="city">What City Are You Located in?</label>
+        <input type="text" id="city" name="city" />
+      </div>
+      <div class="dropdown-cont">
+        <input type="text" id="holder" name="holder" style="display: none" />
+        <button class="dropdown" type="button" id="grade" name="grade">
+          <p id="grhead">Choose Your Grade ‎‎‎</p>
+          <span style="text-align: center">▼</span>
+        </button>
+        <div class="cont" id="grade-cont">
+          <a onclick="switch_content('grhead', 'IX')" id="IX" class="dropopt"
+            >IX</a
+          >
+          <a onclick="switch_content('grhead', 'X')" id="X" class="dropopt"
+            >X</a
+          >
+          <a onclick="switch_content('grhead', 'XI')" id="XI" class="dropopt"
+            >XI</a
+          >
+          <a onclick="switch_content('grhead', 'XII')" id="XII" class="dropopt"
+            >XII</a
+          >
+        </div>
+      </div>
+      <div class="label-cont">
+        <label for="year">Whats The Target Acadamic Year?</label>
+        <input type="text" id="year" placeholder="eg: 2022-2023" name="year" />
+      </div>
+      <input
+        type="text"
+        id="holder2"
+        name="holder2"
+        style="display: none"
+        value="no"
+      />
+      <button type="submit" id="sub" name="sub">Analyze Options</button>
+    </form>
+    <div class="output-cont hidden" id="output-cont">
+      <!-- <label for=""> Want this in Your Inbox? </label>
+      <div class="radio-container">
+        <label for="" class="radio">
+          Yes
+          <input type="radio" name="email" value="Yes" />
+        </label>
+        <label for="" class="radio">
+          No
+          <input type="radio" name="email" value="No" />
+        </label>
+      </div> -->
+      <pre id="output" style="max-width: 70vw; white-space: pre-wrap"></pre>
+    </div>
+
+    <script src="../static/javascript/main.js"></script>
+  </body>
+</html>
