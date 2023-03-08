@@ -3,8 +3,8 @@
 :root{
     font-size: 21px;
     font-family: 'Roboto', sans-serif;
-    --primary-color: #00005c;
-    --text-color: black
+    --accent-color-1: #14bc9a;
+    --accent-color-2: #263238;
 }
 
 ::-webkit-scrollbar{
@@ -21,7 +21,8 @@
 
 
 body{
-    background-color: #CFD8DC;
+    background-color: #FBFFFE;
+    position: relative;
 }
 
 @keyframes blink-cursor{
@@ -33,6 +34,11 @@ body{
     from { width: 0 }
 	to { width: 100% }
 }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
 .header{
     display: flex;
@@ -46,6 +52,20 @@ body{
     align-items: center;
 }
 
+.loader {
+    border: 16px solid var(--accent-color-1);
+    border-top: 16px solid var(--accent-color-2);
+    border-radius: 50%;
+    width: 7vw;
+    height: 7vw;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    margin: -5vw 0 0 -5vw;
+}
+
 .type{
     overflow: hidden;
 	margin: 0 auto;
@@ -55,7 +75,7 @@ body{
 	border-right: .2cm solid orangered;
 	box-sizing: border-box;
     white-space: nowrap;
-    background: -webkit-linear-gradient(rgb(149, 16, 202), rgb(4, 0, 253));
+    background: -webkit-linear-gradient(var(--accent-color-1),#14977d);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -110,42 +130,6 @@ body{
     text-align: center;
 }
 
-.open{
-    animation: dropopen;
-    animation-duration: 0.2s
-}
-
-.close{
-    
-    animation: dropclose;
-    animation-duration: 0.2s
-    
-}
-
-.dropopt{
-    background-color: #F1F1F1;
-    text-decoration: none;
-    min-width: 10vw;
-    max-width: 10vw;
-    color: black;
-    text-align: center;
-    display: block;
-    padding: 5% 0%;
-    border-top: 1px solid rgb(97, 97, 97);
-    border-bottom: 1px solid rgb(97, 97, 97);
-    cursor: pointer;
-    font-size: 120%;
-    font-weight: 500;
-    -webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;  
-}
-
-.dropopt:hover{
-    background-color: #e9e9e9;
-    color: purple;
-}
 
 .label-cont{
     display: flex;
@@ -157,7 +141,7 @@ body{
 
 .quest{
     display: grid;
-    grid-template-columns: repeat(3, 3fr);
+    grid-template-columns: repeat(2, 2fr);
     margin-top: 10vh;
 }
 
@@ -165,9 +149,14 @@ input[type="text"]{
     width: 70%;
     outline: none;
     border: none;
-    border-bottom: rgb(36, 124, 255) 1px solid;
-    font-size: 120%;
-    background-color: #CFD8DC;
+    border-bottom: var(--accent-color-2) 2px solid;
+    font-size: 130%;
+    background-color: #FBFFFE;
+    transition: border-bottom 0.5s ease;
+}
+
+input[type='text']:active, input[type='text']:focus{
+    border-bottom: var(--accent-color-1) 2px solid;
 }
 
 ::placeholder{
@@ -176,25 +165,26 @@ input[type="text"]{
 }
 
 .label-cont label{
-    font-size: 70%;
+    font-size: 80%;
     padding-bottom: 0;
     margin-bottom: 0;
-    color: grey;
+    color: var(--accent-color-1);
     text-align: left;
-    width:70%;
+    width: 70%;
 }
 
-#sub{
+.main-btn{
     grid-column: 1 / span 3;
     margin-top: 15vh;
+    margin-top: 5vh;
     padding: 0.5% 2vw;
     outline: none;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: rgb(48, 48, 48);
+    border: none;
+    background-color: var(--accent-color-2);
     cursor: pointer;
-    color: white;
+    color: var(--accent-color-1);
     position: relative;
-    font-size: 200%;
+    font-size: 190%;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -203,72 +193,65 @@ input[type="text"]{
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 600;
+    transition-property: color, background-color;
+    transition: 0.4s ease-in-out;
 }
 
-#sub:hover{
-    background-color: rgb(41, 41, 41);
+.main-btn:hover{
+    background-color: var(--accent-color-1);
+    color: var(--accent-color-2);
 }
 
-#sub:active{
+.main-btn:active{
     background-color: rgb(31, 31, 31);
 
 }
 
 #output{
-    background-color: rgb(41, 41, 41);
-    color: rgba(21, 101, 219, 1);
+    background-color: var(--accent-color-2);
+    color: var(--accent-color-1);
     font-weight: 500;
     width: 75vw;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 15px;
     padding: 2% 5%;
+    display: flex;
     box-sizing: border-box;
     flex-direction: column;
-}
-
-
-#output>label{
-    margin-top: 5vh;
-    margin-left: auto;margin-right: auto;
-    display: flex;
-	cursor: pointer;
-	font-weight: 500;
-	position: relative;
-	overflow: hidden;
-	margin-bottom: 0.375em;
-}
-
-
-
-
-label.radio{
-    text-align: center;
-    margin-right: 3vw;
-    margin-top: 2vh;
-    margin-left: 1vw;
-    color: rgb(124, 85, 233);
-
-}
-
-.radio-container{
-    display: flex;
-    margin-left: auto;margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    white-space: pre;
+    
 }
 
 .output-cont{
     justify-content: center;
     align-items: center;
+    margin-bottom: 7vh;
+    flex-direction: column;
 }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 /* Responsive time */
 @media only screen and (max-width:800px){
+    body{
+        margin: 0;
+    }
     .header{
         flex-direction: column;
         height: auto;
+        font-size: 60%;
     }
 
     .header h1{
-        margin-bottom: 0;
+        margin-bottom: 1vh;
     }
 
     .type{
@@ -279,9 +262,58 @@ label.radio{
     
     .quest{
         grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(3, 3fr);
-        row-gap: 20vh;
+        height: 100%;
+        row-gap: 5vh;
+        
     }
 
+    .label-cont{
+        min-width: fit-content;
+    }
 
+    input[type="text"]{
+        font-size: 100%;
+        width: 83%;
+    }
+
+    ::placeholder{
+        font-size: 75%;
+    }
+
+    .label-cont label{
+        font-size: 80%;
+        width: 85%;
+    }
+
+    .main-btn{
+        grid-column: 1;
+        margin-top: 5vh;
+        font-size: 100%;
+        width: 85%;
+        font-weight: 200;
+        padding: 1.2% 2vw;
+    }
+
+    #output{
+        border-radius: 10px;
+        width: 100vw;
+    }
+
+    .output-cont{
+        width: 100vw;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .loader{
+        border: 10px solid var(--accent-color-1);
+        border-top: 10px solid var(--accent-color-2);
+    }
+
+    .output-cont>.main-btn{
+        width: 92vw;
+        margin-top: 3vh;
+    }
+
+    
 }

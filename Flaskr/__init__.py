@@ -3,38 +3,44 @@ import openai
 
 app = Flask(__name__)
 openai.api_key = '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'
-
+resetable:bool = False
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
-    global btnstate, output_content
-    btnstate = 'no'
+    global btn_clicked, output_content
+    btn_clicked = 'no'
     if request.method == "POST" and 'sub' in request.form:
-        print(f'city: {request.form["city"]} | grade: {request.form["holder"]} | year:{request.form["year"]} | btn_state:{request.form["holder2"]}')
-        
-        btnstate = request.form["holder2"]
+
         gpt3 = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": f"Give or Predict me a List of Schools in {request.form['city']} for acadamic year {request.form['year']} for grade {request.form['holder']}"}]
+            messages=[{"role": "user", "content": f"Give me a job description of a person with {request.form['year']} experiance in {request.form['skill']}"}]
         )
         
         output_content = gpt3['choices'][0]['message']['content']
-
-        # I need list of schools in {city} for acadamic year {year} for class {grade}
+        # output_content = 'lorem ipsum'
         
     return render_template('main.html')
 
-@app.route('/remove_form')
-def remove_form():
-    if btnstate == 'yes': 
-        message = {'action': 'remove'}
-        
-    else:
-        {'action': 'null'}
-        
-    return jsonify(message)
+
 
 @app.route('/output')
 def output():
     message = {'content' : output_content}
     return jsonify(message)
+
+@app.route('/resetable_update_true')
+def resetable_update_true():
+    global resetable
+    resetable = True
+    return ""
+   
+@app.route('/resetable_update_false')
+def resetable_update_false():
+    global resetable
+    resetable = False
+    return ""
+
+@app.route("/get_resetable")
+def get_resetable():
+    global resetable
+    return f"{resetable}"

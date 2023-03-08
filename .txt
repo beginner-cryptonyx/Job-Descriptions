@@ -1,0 +1,70 @@
+//   #1
+// output_activator.addEventListener('click', function(event){
+
+//     document.getElementById('holder2').value = 'yes'
+//     document.getElementById('quest').style.display = 'grid';
+//     output_activator.classList.remove('hidden')
+//     output_cont.classList.add("hidden")
+//     output_cont.style.display = 'none'
+// })
+
+// document.addEventListener('DOMContentLoaded', function(){
+//     fetch('/remove_form').then(function(response) {
+//         return response.json();
+//     }).then(function(data){
+//         console.log(data.action)
+//         if (data.action == 'remove'){
+//             document.getElementById('quest').style.display = 'none';
+//             output_activator.classList.add('hidden')
+//             output_cont.classList.remove("hidden")
+//             output_cont.style.display = 'flex'
+//             fetch('/output').then(function(response) {
+//                 return response.json();
+//             }).then(function(data){
+//                  document.getElementById("output").innerHTML = data.content;
+//             });
+//         }else if(data.action == 'reload'){
+//             document.getElementById('quest').style.display = 'grid';
+//             output_activator.classList.remove('hidden')
+//             output_cont.classList.add("hidden")
+//             output_cont.style.display = 'none'
+//         }
+//     })
+// })
+
+//   #2
+// document.addEventListener('DOMContentLoaded', function(){
+//     fetch('/remove_form').then(function(response) {
+//         return response.json();
+//     }).then(function(data){
+//         console.log(data.action)
+//         if (data.action == 'remove'){
+//             document.getElementById('quest').style.display = 'none';
+//             output_activator.classList.add('hidden')
+//             output_cont.classList.remove("hidden")
+//             output_cont.style.display = 'flex'
+//             fetch('/output').then(function(response) {
+//                 return response.json();
+//             }).then(function(data){
+//                  document.getElementById("output").innerHTML = data.content;
+//             });
+//         }else if(data.action == 'reset'){
+//             document.getElementById('quest').style.display = 'grid';
+//             output_activator.classList.remove('hidden')
+//             output_cont.classList.add("hidden")
+//             output_cont.style.display = 'none'
+//         }
+//     })
+// })
+
+// const reset_btn = document.getElementById('reset_btn')
+// reset_btn.addEventListener('click', () => {
+//     document.getElementById('holder2').value = 'no'
+//     fetch('/remove_form').then(function(response) {
+//         return response.json();
+//     }).then(function(data){
+//         if (data.action == 'reset') {
+//             window.location.reload()
+//         }
+//     })
+// })
