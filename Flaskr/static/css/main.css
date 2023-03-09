@@ -52,6 +52,7 @@ body {
   }
 }
 
+/* Default styles */
 .header {
   display: flex;
   align-items: center;
@@ -105,53 +106,8 @@ body {
   cursor: pointer;
 }
 
-.dropdown:hover {
-  background-color: rgb(120, 255, 120);
-}
 
-.dropdown:active {
-  /* background-color: rgb(16, 218, 16); */
-  filter: invert(30%);
-}
-.dropdown-cont {
-  display: block;
-  position: relative;
-  min-width: fit-content;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@keyframes dropopen {
-  from {
-    height: 0;
-    overflow: hidden;
-  }
-  to {
-    display: block;
-    height: 20vh;
-  }
-}
-
-@keyframes dropclose {
-  from {
-    height: 20vh;
-    overflow: auto;
-  }
-  to {
-    height: 0;
-    overflow: hidden;
-  }
-}
-
-.cont {
-  position: absolute;
-  z-index: 2;
-  height: 0;
-  text-align: center;
-  overflow: hidden;
-}
-
-.label-cont {
+.label-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -185,7 +141,7 @@ input[type="text"]:focus {
   opacity: 0.4;
 }
 
-.label-cont label {
+.label-container label {
   width: 70%;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -243,7 +199,7 @@ input[type="text"]:focus {
   box-sizing: border-box;
 }
 
-.output-cont {
+.output-container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -258,7 +214,7 @@ pre {
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
-/* Responsive time */
+/* Responsive Checks */
 @media only screen and (max-width: 800px) {
   body {
     margin: 0;
@@ -283,7 +239,7 @@ pre {
     row-gap: 5vh;
   }
 
-  .label-cont {
+  .label-container {
     min-width: fit-content;
   }
 
@@ -296,7 +252,7 @@ pre {
     font-size: 75%;
   }
 
-  .label-cont label {
+  .label-container label {
     width: 85%;
     font-size: 80%;
   }
@@ -315,7 +271,7 @@ pre {
     border-radius: 10px;
   }
 
-  .output-cont {
+  .output-container {
     width: 100vw;
     margin-top: 5vh;
     margin-bottom: 5vh;
@@ -326,7 +282,7 @@ pre {
     border-top: 10px solid var(--accent-color-2);
   }
 
-  .output-cont > .main-btn {
+  .output-container > .main-btn {
     width: 92vw;
     margin-top: 3vh;
   }

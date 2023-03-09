@@ -1,5 +1,11 @@
+// Grabbing elements
 const header = document.getElementById("type");
+const output_activator = document.getElementById("sub");
+const output_cont = document.getElementById("output-container");
+const reset_btn = document.getElementById("reset_btn");
+const loader = document.getElementById("loader");
 
+// Recursive Function to update the typewriter
 function txtupdate() {
   setTimeout(() => {
     header.remove();
@@ -23,11 +29,7 @@ function txtupdate() {
 
 txtupdate();
 
-const output_activator = document.getElementById("sub");
-const output_cont = document.getElementById("output-cont");
-const reset_btn = document.getElementById("reset_btn");
-const loader = document.getElementById("loader");
-
+// Checks if the form has been submitted and sends request to python server to update variable reserable to true
 output_activator.addEventListener("click", () => {
   fetch("/resetable_update_true")
     .then((response) => {
@@ -43,6 +45,7 @@ output_activator.addEventListener("click", () => {
   loader.classList.remove("hidden");
 });
 
+// Check if the user want another generated reponse, sends request to update variable resetable to False
 reset_btn.addEventListener("click", () => {
   fetch("/resetable_update_false")
     .then((response) => {
@@ -56,12 +59,12 @@ reset_btn.addEventListener("click", () => {
       console.error("Error while updating resetable:", error);
     });
   loader.classList.remove("hidden");
-  // window.location.reload()
   setTimeout(() => {
     window.location.reload();
   }, 1000);
 });
 
+// This is a check to find out if the user is on the form enter page or the view output page
 document.addEventListener("DOMContentLoaded", function () {
   fetch("/get_resetable")
     .then(function (response) {
