@@ -10,7 +10,7 @@ This Website is designed for generating a job descripon based on __*skills*__ an
 >
 > - Output Button
 >
-> - Spinner
+> - Spinner Loader for API response time
 >
 > - API response screen
 >
