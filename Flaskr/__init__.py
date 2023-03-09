@@ -1,15 +1,13 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 import openai
 from . import config
 
 app = Flask(__name__)
+app.secret_key = "l"
 openai.api_key = config.key
-resetable:bool = False
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
-    global btn_clicked, output_content
-    btn_clicked = 'no'
     if request.method == "POST" and 'sub' in request.form:
 
         gpt3 = openai.ChatCompletion.create(
@@ -17,31 +15,26 @@ def main():
             messages=[{"role": "user", "content": f"Give me a job description of a person with {request.form['year']} experiance in {request.form['skill']}"}]
         )
         
-        output_content = gpt3['choices'][0]['message']['content']
-        # output_content = 'lorem ipsum'
+        session['output_content'] = gpt3['choices'][0]['message']['content']
+        # session['output_content'] = 'lorem ipsum'
         
     return render_template('main.html')
 
-
-
 @app.route('/output')
 def output():
-    message = {'content' : output_content}
+    message = {'content' : session.get('output_content')}
     return jsonify(message)
 
 @app.route('/resetable_update_true')
 def resetable_update_true():
-    global resetable
-    resetable = True
+    session['resetable'] = True
     return ""
    
 @app.route('/resetable_update_false')
 def resetable_update_false():
-    global resetable
-    resetable = False
+    session['resetable'] = False
     return ""
 
 @app.route("/get_resetable")
 def get_resetable():
-    global resetable
-    return f"{resetable}"
+    return f"{session.get('resetable')}"
